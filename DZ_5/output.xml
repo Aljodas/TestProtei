@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.2 on win32)" generated="20231204 21:37:13.097" rpa="false" schemaversion="4">
+<suite id="s1" name="Mock" source="C:\Users\kuzme\OneDrive\Рабочий стол\test\Протей\DZ_5\DZ_5_3\mock.robot">
+<test id="s1-t1" name="Test Search Addresses With Mocked HTTP" line="6">
+<kw name="Create List" library="BuiltIn">
+<var>${mocked_result}</var>
+<arg>{"display_name": "Магазин 1"}</arg>
+<arg>{"display_name": "Магазин 2"}</arg>
+<arg>{"display_name": "Магазин 3"}</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20231204 21:37:13.260" level="INFO">${mocked_result} = ['{"display_name": "Магазин 1"}', '{"display_name": "Магазин 2"}', '{"display_name": "Магазин 3"}']</msg>
+<status status="PASS" starttime="20231204 21:37:13.260" endtime="20231204 21:37:13.260"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${response}</var>
+<arg>json=${mocked_result}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231204 21:37:13.261" level="INFO">${response} = {'json': ['{"display_name": "Магазин 1"}', '{"display_name": "Магазин 2"}', '{"display_name": "Магазин 3"}']}</msg>
+<status status="PASS" starttime="20231204 21:37:13.261" endtime="20231204 21:37:13.261"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mocked_session</arg>
+<arg>https://nominatim.openstreetmap.org</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231204 21:37:13.261" level="INFO">Creating Session using : alias=mocked_session, url=https://nominatim.openstreetmap.org, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20231204 21:37:13.261" endtime="20231204 21:37:13.261"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type</arg>
+<arg>application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231204 21:37:13.262" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20231204 21:37:13.262" endtime="20231204 21:37:13.262"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mocked_session</arg>
+<arg>/search</arg>
+<arg>params=${response}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20231204 21:37:13.721" level="INFO">GET Request : url=https://nominatim.openstreetmap.org/search?json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+1%22%7D&amp;json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+2%22%7D&amp;json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+3%22%7D (redirected) 
+ path_url=/search?json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+1%22%7D&amp;json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+2%22%7D&amp;json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+3%22%7D 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20231204 21:37:13.721" level="INFO">GET Response : url=https://nominatim.openstreetmap.org/ui/search.html?json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+1%22%7D&amp;json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+2%22%7D&amp;json=%7B%22display_name%22%3A+%22%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD+3%22%7D 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Mon, 04 Dec 2023 18:35:44 GMT', 'Content-Type': 'text/html', 'Content-Length': '780', 'Last-Modified': 'Thu, 29 Dec 2022 16:12:49 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=20', 'ETag': '"63adbc81-30c"', 'Accept-Ranges': 'bytes'} 
+ body=&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset='utf-8'&gt;
+  &lt;meta name='viewport' content='width=device-width,initial-scale=1'&gt;
+
+  &lt;title&gt;Nominatim Demo&lt;/title&gt;
+
+  &lt;link rel="icon" type="image/png" href="theme/favicon-194x194.png" sizes="194x194"&gt;
+  &lt;link rel="icon" type="image/png" href="theme/favicon-32x32.png" sizes="32x32"&gt;
+
+  &lt;link rel='stylesheet' href='build/bundle.css'&gt;
+  &lt;link rel='stylesheet' href='theme/style.css'&gt;
+
+  &lt;script src='config.defaults.js'&gt;&lt;/script&gt;
+  &lt;script src='theme/config.theme.js'&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    if (Nominatim_Config.Reverse_Only) {
+      window.location.pathname = window.location.pathname.replace('search.html', 'reverse.html');
+    }
+  &lt;/script&gt;
+  &lt;script defer src='build/bundle.js'&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+ </msg>
+<msg timestamp="20231204 21:37:13.722" level="INFO">C:\Users\kuzme\OneDrive\Рабочий стол\test\Протей\DZ_5\venv\lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'nominatim.openstreetmap.org'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+C:\Users\kuzme\OneDrive\Рабочий стол\test\Протей\DZ_5\venv\lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'nominatim.openstreetmap.org'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg timestamp="20231204 21:37:13.722" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231204 21:37:13.262" endtime="20231204 21:37:13.722"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${status}</var>
+<arg>${resp.status_code}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20231204 21:37:13.724" level="INFO">${status} = 200</msg>
+<status status="PASS" starttime="20231204 21:37:13.722" endtime="20231204 21:37:13.724"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${status}' == '200'</arg>
+<arg>Decode Response</arg>
+<arg>${resp}</arg>
+<arg>ELSE</arg>
+<arg>Log</arg>
+<arg>Response status code is not 200</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Decode Response">
+<arg>${resp}</arg>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${response.text}' != ''</arg>
+<arg>Log</arg>
+<arg>Decoded JSON: ${response.json()}</arg>
+<arg>ELSE</arg>
+<arg>Log</arg>
+<arg>Response body is empty</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<msg timestamp="20231204 21:37:13.728" level="FAIL">Evaluating expression ''&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset='utf-8'&gt;
+  &lt;meta name='viewport' content='width=device-width,initial-scale=1'&gt;
+
+  &lt;title&gt;Nominatim Demo&lt;/title&gt;
+
+  &lt;link rel="icon" type="image/png" href="theme/favicon-194x194.png" sizes="194x194"&gt;
+  &lt;link rel="icon" type="image/png" href="theme/favicon-32x32.png" sizes="32x32"&gt;
+
+  &lt;link rel='stylesheet' href='build/bundle.css'&gt;
+  &lt;link rel='stylesheet' href='theme/style.css'&gt;
+
+  &lt;script src='config.defaults.js'&gt;&lt;/script&gt;
+  &lt;script src='theme/config.theme.js'&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    if (Nominatim_Config.Reverse_Only) {
+      window.location.pathname = window.location.pathname.replace('search.html', 'reverse.html');
+    }
+  &lt;/script&gt;
+  &lt;script defer src='build/bundle.js'&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+' != ''' failed: SyntaxError: unterminated string literal (detected at line 1) (&lt;string&gt;, line 1)</msg>
+<status status="FAIL" starttime="20231204 21:37:13.726" endtime="20231204 21:37:13.728"/>
+</kw>
+<status status="FAIL" starttime="20231204 21:37:13.725" endtime="20231204 21:37:13.728"/>
+</kw>
+<status status="FAIL" starttime="20231204 21:37:13.724" endtime="20231204 21:37:13.728"/>
+</kw>
+<kw name="Delete Session">
+<arg>mocked_session</arg>
+<status status="NOT RUN" starttime="20231204 21:37:13.735" endtime="20231204 21:37:13.735"/>
+</kw>
+<tag>happy path</tag>
+<status status="FAIL" starttime="20231204 21:37:13.260" endtime="20231204 21:37:13.736">Evaluating expression ''&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset='utf-8'&gt;
+  &lt;meta name='viewport' content='width=device-width,initial-scale=1'&gt;
+
+  &lt;title&gt;Nominatim Demo&lt;/title&gt;
+
+  &lt;link rel="icon" type="image/png" href="theme/favicon-194x194.png" sizes="194x194"&gt;
+  &lt;link rel="icon" type="image/png" href="theme/favicon-32x32.png" sizes="32x32"&gt;
+
+  &lt;link rel='stylesheet' href='build/bundle.css'&gt;
+  &lt;link rel='stylesheet' href='theme/style.css'&gt;
+
+  &lt;script src='config.defaults.js'&gt;&lt;/script&gt;
+  &lt;script src='theme/config.theme.js'&gt;&lt;/script&gt;
+
+  &lt;script&gt;
+    if (Nominatim_Config.Reverse_Only) {
+      window.location.pathname = window.location.pathname.replace('search.html', 'reverse.html');
+    }
+  &lt;/script&gt;
+  &lt;script defer src='build/bundle.js'&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+' != ''' failed: SyntaxError: unterminated string literal (detected at line 1) (&lt;string&gt;, line 1)</status>
+</test>
+<status status="FAIL" starttime="20231204 21:37:13.098" endtime="20231204 21:37:13.736"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">happy path</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Mock">Mock</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

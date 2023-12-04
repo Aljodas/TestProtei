@@ -74,7 +74,7 @@ class SearchLocators:
     LOCATOR_USER_GENDER = (By.XPATH, '//*[@id="dataTable"]/tbody/tr[10]/td[3]')
     LOCATOR_USER_SELECT_1 = (By.XPATH, '//*[@id="dataTable"]/tbody/tr[10]/td[4]')
     LOCATOR_USER_SELECT_2 = (By.XPATH, '//*[@id="dataTable"]/tbody/tr[10]/td[5]')
-
+    LOCATOR_ALL_TABlE = (By.XPATH, '//*[@id="dataTable"]/tbody')
 
 # Вспомогательные методы для работы с поиском
 class SearchHelper(AuthorizationPage):
@@ -178,6 +178,15 @@ class SearchHelper(AuthorizationPage):
         list = [search_email, search_name, search_gender, search_selection_1, search_selection_2]
         return list
 
+    def check_user_in_all_table(self):
+        users_menu = self.find_element(SearchLocators.LOCATOR_MENU_USERS_OPENER)
+        users_menu.click()
+        table = self.find_element(SearchLocators.LOCATOR_MENU_TABLE)
+        table.click()
+
+        table = self.find_element(SearchLocators.LOCATOR_ALL_TABlE)
+        return table
+
 
 # Верхнеуровневая логика действий пользователя: авторизация + проверка Главной страницы
 def test_1(browser):
@@ -264,3 +273,14 @@ def test_7(browser):
     assert user_in_table[2].text == 'Мужской'
     assert user_in_table[3].text == '1.2'
     assert user_in_table[4].text == '2.1'
+
+
+def test_8(browser):
+    authorization_page = SearchHelper(browser)
+    authorization_page.go_to_site()
+    authorization_page.enter_login("test@protei.ru")
+    authorization_page.enter_password("test")
+    authorization_page.click_on_the_search_button()
+
+    user_in_table = authorization_page.check_user_in_all_table()
+    assert '111@mail.ru' in user_in_table
