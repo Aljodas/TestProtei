@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch, Mock
-from number_of_characters import count_elements
+from functions_for_testing_Mocks import count_elements, get_character_name, get_episodes_names
 
 
 @patch('number_of_characters.requests')
@@ -24,3 +24,24 @@ def test_count_elements(mock_requests):
     )
     # Проверяем, соответствует ли возвращенный результат ожидаемому значению
     assert result == 10
+
+
+@patch('number_of_characters.requests.get')
+def test_get_character_name(mock_get):
+    mock_response = mock_get.return_value
+    mock_response.ok = True
+    mock_response.json.return_value = {"name": "Morty"}
+    result = get_character_name()
+    assert result == "Morty"
+
+
+@patch('number_of_characters.requests.get')
+def test_get_episodes_names(mock_get):
+    mock_response = mock_get.return_value
+    mock_response.ok = True
+    mock_response.json.return_value = [
+        {"name": "episode 1"},
+        {"name": "episode 2"}
+    ]
+    result = get_episodes_names()
+    assert result == ["episode 1", "episode 2"]
