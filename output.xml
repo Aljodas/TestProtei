@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.2 on win32)" generated="20231205 11:16:34.506" rpa="false" schemaversion="4">
+<suite id="s1" name="Mock" source="C:\Users\kuzme\OneDrive\Рабочий стол\test\Протей\DZ_2\DZ_5\DZ_5_3\mock.robot">
+<test id="s1-t1" name="Run Python Test" line="8">
+<kw name="Run And Return Rc And Output" library="OperatingSystem">
+<var>${output}</var>
+<arg>python</arg>
+<arg>test_with_mock.py</arg>
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<msg timestamp="20231205 11:16:34.616" level="FAIL">Keyword 'OperatingSystem.Run And Return Rc And Output' expected 1 argument, got 2.</msg>
+<status status="FAIL" starttime="20231205 11:16:34.616" endtime="20231205 11:16:34.616"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${output.rc}</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20231205 11:16:34.616" endtime="20231205 11:16:34.616"/>
+</kw>
+<status status="FAIL" starttime="20231205 11:16:34.616" endtime="20231205 11:16:34.616">Keyword 'OperatingSystem.Run And Return Rc And Output' expected 1 argument, got 2.</status>
+</test>
+<status status="FAIL" starttime="20231205 11:16:34.506" endtime="20231205 11:16:34.616"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Mock">Mock</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
