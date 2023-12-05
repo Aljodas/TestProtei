@@ -39,9 +39,6 @@ def test_get_character_name(mock_get):
 def test_get_episodes_names(mock_get):
     mock_response = mock_get.return_value
     mock_response.ok = True
-    mock_response.json.return_value = [
-        {"name": "episode 1"},
-        {"name": "episode 2"}
-    ]
+    mock_response.json.return_value = [{"name": "episode 1"}, {"name": "episode 2"}]
     result = get_episodes_names()
     assert result == ["episode 1", "episode 2"]
