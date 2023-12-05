@@ -3,7 +3,7 @@ Library  geocoding.py
 
 *** Test Cases ***
 check characters
-    [Documentation]  Checking addresses and number of shops
+    [Documentation]  Checking number of shops
     ${city}=  Set Variable  Санкт-Петербург
     ${name}=  Set Variable  Nike
     ${file_name}=  Set Variable  addresses.txt

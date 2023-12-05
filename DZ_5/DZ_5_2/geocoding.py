@@ -3,6 +3,7 @@ import requests
 search_url = "https://nominatim.openstreetmap.org/search"
 
 
+# Находим кол-во магазинов по названию и городу, записываем адреса в файл
 def search_addresses(city, amenity):
     params_search = {
         "city": city,
@@ -23,6 +24,7 @@ def search_addresses(city, amenity):
     return number_addresses
 
 
+# По данным из файла находим адреса магазинов, считаем кол-во и записываем адреса в файл
 def get_shop_name(addresses_file):
     count = 0
     with open(addresses_file, 'r') as file:
@@ -55,6 +57,6 @@ def get_shop_name(addresses_file):
                         count += 1
     return count
 
-get_shop_name('addresses.txt')
+# get_shop_name('addresses.txt')
 
 

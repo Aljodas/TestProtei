@@ -1,5 +1,5 @@
 *** Settings ***
-Library  main.py
+Library  count_characters.py
 
 *** Test Cases ***
 
