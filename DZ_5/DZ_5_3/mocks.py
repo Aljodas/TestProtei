@@ -3,7 +3,7 @@ from unittest.mock import patch, Mock
 from functions_for_testing_Mocks import count_elements, get_character_name, get_episodes_names
 
 
-@patch('number_of_characters.requests')
+@patch('functions_for_testing_Mocks.requests')
 def test_count_elements(mock_requests):
     # Создаем имитацию объекта response
     mock_response = Mock()
@@ -26,7 +26,7 @@ def test_count_elements(mock_requests):
     assert result == 10
 
 
-@patch('number_of_characters.requests.get')
+@patch('functions_for_testing_Mocks.requests.get')
 def test_get_character_name(mock_get):
     mock_response = mock_get.return_value
     mock_response.ok = True
@@ -35,7 +35,7 @@ def test_get_character_name(mock_get):
     assert result == "Morty"
 
 
-@patch('number_of_characters.requests.get')
+@patch('functions_for_testing_Mocks.requests.get')
 def test_get_episodes_names(mock_get):
     mock_response = mock_get.return_value
     mock_response.ok = True
